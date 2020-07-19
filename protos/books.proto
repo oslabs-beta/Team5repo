@@ -1,0 +1,26 @@
+syntax = 'proto3';
+
+service BooksService {
+  rpc CreateBook (Book) returns (Book) {}
+  rpc GetBooks (Empty) returns (BookList) {}
+  rpc DeleteBook (BookID) returns (Empty) {}
+}
+
+message Book {
+  //title, author, # of pages, publisher
+  string title = 1;
+  string author = 2;
+  int32 pages = 3;
+  string publisher = 4;
+  int32 id = 5;
+}
+
+message Empty {}
+
+message BookList {
+  repeated Book books = 1;
+}
+
+message BookID {
+    int32 id = 1;
+}
