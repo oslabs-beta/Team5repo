@@ -7,9 +7,10 @@ service CustomersService {
 }
 
 message Customer {
-    string name = 1;
-    string age = 2;
-    string address = 3;
+    int32 id = 1;
+    string name = 2;
+    string age = 3;
+    string address = 4;
 }
 
 message Empty {}

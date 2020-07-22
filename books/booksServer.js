@@ -1,6 +1,11 @@
 const PROTO_PATH = '../protos/books.proto';
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
+const express = require('express');
+const controller = require('./booksController.js');
+const getBooksResult = controller.getBooksResult
+const app = express();
+app.use(express.json());
 
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,
@@ -8,8 +13,6 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   enums: String,
   arrays: true
 })
-
-const BookModel = require('./booksModel.js');
 
 const booksProto = grpc.loadPackageDefinition(packageDefinition);
 
@@ -21,40 +24,51 @@ server.addService(booksProto.BooksService.service, {
   CreateBook: (call, callback) => {
     console.log('call to CreateBook')
 
-    // write to database
+    //sample will take the call information from the client(stub)
+    const sampleAdd= {
+      title: call.request.title, 
+      author: call.request.author,
+      numberOfPages: call.request.numberOfPages,
+      publisher: call.request.publisher,
+      id: call.request.id
+    }
+//this actually sends data to booksController.
+   controller.createBook(sampleAdd);
+    
 
+//Whatever gets passed in as the second argument will be sent back to the client.
     callback(
       null,
       //bookmodel.create
       {
-        title: "title1", 
-        author:"author1",
-        pages: 100,
-        publisher: 'Random House',
-        id: 0
+        title: `completed for: ${call.request.title}`, 
+        author: `completed for: ${call.request.author}`,
+        numberOfPages:`completed for: ${call.request.numberOfPages}` ,
+        publisher: `completed for: ${call.request.publisher}`,
+        id: `completed for: ${call.request.id}`
       }
     );
   },
   GetBooks: (call, callback) => {
     console.log('call to GetBooks');
-
+ 
     // read from database
 
-    callback(
-      null,
-         
-    )
+    controller.getBooks(callback);
+
   },
   DeleteBook: (call, callback) => {
-    console.log('call to DeleteBook');
+    //sample will take the call information from the client(stub)
+    const sampleDelete= {      
+      id: call.request.id
+    }
+
+  //this actually sends data to booksController.
+    controller.deleteBook(sampleDelete);
 
     // delete from database
-
     callback(
-      null,
-      {
-        id: 'id number'
-      }
+      null,{ message: 'DELETED'}
     )
   }
 });

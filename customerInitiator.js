@@ -6,12 +6,13 @@ console.log('process.env vars', process.env.function);
 
 //temporarily hardcoding a test customer until we can update customer info dynamically.
 const customer = {
-  name: 'Bo',
+  id: 302,
+  name: 'DOG',
   age: 100,
-  address: 'Nowherevile'
+  address: 'Nowhereville'
 };
 
-const id = 1;
+const id = {id: 302};
 
 const callback = (error, data) => {
   console.log('call to callback')

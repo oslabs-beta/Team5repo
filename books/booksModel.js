@@ -17,6 +17,11 @@ mongoose.connect(book_db_URI, { useNewUrlParser: true, useUnifiedTopology: true 
 
 //  Schema for the database
 const BooksSchema = new Schema({
+  id: {
+    type: Number,
+    required: true,
+  },
+
   title: {
     type: String,
     required: true,
@@ -36,6 +41,6 @@ const BooksSchema = new Schema({
 });
 
 // Database Model creation to be exported
-const BookModel = mongoose.model('BookModel', BooksSchema);
+const booksModel = mongoose.model('booksModel', BooksSchema);
 
-module.exports = BookModel;
+module.exports = booksModel;

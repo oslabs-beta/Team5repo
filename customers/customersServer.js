@@ -1,6 +1,10 @@
 const PROTO_PATH = '../protos/customers.proto';
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
+const express = require('express');
+const controller = require('./customersController.js');
+const app = express();
+app.use(express.json());
 
 //packageDefinition loads the protofile and defines some settings of how we want our data to load.
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
@@ -29,14 +33,23 @@ server.addService(customersProto.CustomersService.service, {
   CreateCustomer: (call, callback) => {
     console.log('call to CreateCustomer')
 
-    //This is where we will put the logic to create a customer in the database
+//sample will take the call information from the client(stub)
+    const sampleAdd= {
+      id: call.request.id,
+      name: call.request.name, 
+      age: call.request.age,
+      address: call.request.address,
+    }
+//this actually sends data to customersController.
+   controller.createCustomer(sampleAdd);
 
     callback(
       null,
       {
-        name: 'name', //strings 'name', 'age', 'address' are place holders until we pass in variables from front-end
-        age: 'age',
-        address: 'address',
+        id: `completed for ${call.request.id}`,
+        name: `completed for ${call.request.name}`, //strings 'name', 'age', 'address' are place holders until we pass in variables from front-end
+        age: `completed for ${call.request.name}`,
+        address: `completed for ${call.request.address}`,
       }
     );
   },
@@ -44,24 +57,20 @@ server.addService(customersProto.CustomersService.service, {
     console.log('call to GetCustomer')
 
     //logic to read from database
-
-    callback(
-      null,
-      {
-        names: '[CustomerList]'
-      }
-    );
+    controller.getCustomers(callback);
+    
   },
   DeleteCustomer: (call, callback) => {
     console.log('call to DeleteCustomer')
 
+    const sampleDelete= {      
+      id: call.request.id
+    }
     //logic to delete customer from Database
+    controller.deleteCustomer(sampleDelete);
 
     callback(
-      null,
-      {
-        id: 'id number'
-      }
+      null, {message: 'CUSTOMER DELETED'}
     );
   }
 });

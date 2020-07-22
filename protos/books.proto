@@ -10,7 +10,7 @@ message Book {
   //title, author, # of pages, publisher
   string title = 1;
   string author = 2;
-  int32 pages = 3;
+  int32 numberOfPages = 3;
   string publisher = 4;
   int32 id = 5;
 }
