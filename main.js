@@ -21,7 +21,6 @@ const customer = {
 
 let ht = new horusTracer('main');
 
-
 function main() {
     ht.start('books');
     booksStub.CreateBook(book, (error, response) => {
@@ -36,16 +35,16 @@ function main() {
         }, 2000);
     });
 
-    ht.start('customers');
-    customersStub.CreateCustomer(customer, (error, response) => {
-        ht.end();
-    }).on('metadata', metadata => {
-        setTimeout(() => {
-            ht.grabTrace(metadata.get('response')[0]);
-            ht.displayRequests();
-            ht.writeToFile();
-        }, 2000);
-    });
+    // ht.start('customers');
+    // customersStub.CreateCustomer(customer, (error, response) => {
+    //     ht.end();
+    // }).on('metadata', metadata => {
+    //     setTimeout(() => {
+    //         ht.grabTrace(metadata.get('response')[0]);
+    //         ht.displayRequests();
+    //         ht.writeToFile();
+    //     }, 2000);
+    // });
 
     // booksStub.GetBooks({}, (error, response) => {
     //     ht.end();
