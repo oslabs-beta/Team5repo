@@ -1,4 +1,6 @@
-const PROTO_PATH = '../protos/customers.proto';
+const path = require("path");
+// const PROTO_PATH = '../protos/books.proto';
+const PROTO_PATH = path.join(__dirname, "../protos/customers.proto");
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
 const express = require('express');
@@ -36,13 +38,16 @@ server.addService(customersProto.CustomersService.service, {
 //sample will take the call information from the client(stub)
     const sampleAdd= {
       id: call.request.id,
-      name: call.request.name, 
+      name: call.request.name,
       age: call.request.age,
       address: call.request.address,
     }
 //this actually sends data to customersController.
    controller.createCustomer(sampleAdd);
 
+   let meta = new grpc.Metadata();
+   meta.add('response', 'none');
+   call.sendMetadata(meta);
     callback(
       null,
       {

@@ -1,0 +1,6 @@
+books (service) response received at: 21.959 ms (Total)
+customers (service) response received at: 12 ms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+books (service) response received at: 16.784 ms (Total)
+customers (service) response received at: 12 ms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

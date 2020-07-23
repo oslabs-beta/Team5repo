@@ -4,7 +4,7 @@ const booksController = {};
 
 // controller Creates Books
 booksController.createBook = (sampleAdd, res, next) => {
-    booksModel.create(sampleAdd,(err, result) => {
+    booksModel.create(sampleAdd, (err, result) => {
       if (err) {
         console.log(`This is the error I am getting back ${err}`);
         return res.send(404).json(err);
@@ -42,7 +42,7 @@ booksController.getBooks = (callback) => {
         numberOfPages: result[i].numberOfPages,
         publisher: result[i].publisher,
         id: result[i].id
-      })            
+      })
     }
 //***********IMPORTANT: MAKE SURE WHEN YOU'RE SENDING DATA BACK TO THE CLIENT THAT YOU ARE FOLLOWING THE PROTOFILE FORMAT EXACTLY!!!
 

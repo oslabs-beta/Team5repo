@@ -1,0 +1,24 @@
+Request ID: 1
+books (service) response received at: 27.061 ms (Total)
+customers (service) response received at: 12 ms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Request ID: 1
+books (service) response received at: 17.694 ms (Total)
+customers (service) response received at: 12 ms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Request ID: 1
+books (service) response received at: 10.027 ms (Total)
+customers (service) response received at: 12 ms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Request ID: 1
+books (service) response received at: 13.523 ms (Total)
+customers (service) response received at: 12 ms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Request ID: 1
+books (service) response received at: 38.644 ms (Total)
+customers (service) response received at: 12 ms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Request ID: 1
+books (service) response received at: 10.684 ms (Total)
+customers (service) response received at: 12 ms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

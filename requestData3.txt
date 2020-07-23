@@ -1,0 +1,36 @@
+Request ID: 1
+books (service) response received at: 26.881 ms (Total)
+customers (service) response received at: 12 ms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Request ID: 1
+books (service) response received at: 13.847 ms (Total)
+customers (service) response received at: 12 ms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Request ID: 1
+books (service) response received at: 8.309 ms (Total)
+customers (service) response received at: 12 ms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Request ID: 2
+books (service) response received at: 32.246 ms (Total)
+customers (service) response received at: 12 ms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Request ID: 2
+books (service) response received at: 19.756 ms (Total)
+customers (service) response received at: 12 ms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Request ID: 2
+books (service) response received at: 36.150 ms (Total)
+customers (service) response received at: 12 ms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Request ID: 2
+books (service) response received at: 30.803 ms (Total)
+customers (service) response received at: 12 ms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Request ID: 2
+books (service) response received at: 2.524 ms (Total)
+customers (service) response received at: 12 ms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Request ID: 2
+books (service) response received at: 5.674 ms (Total)
+customers (service) response received at: 12 ms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

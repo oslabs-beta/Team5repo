@@ -10,7 +10,6 @@ customersController.createCustomer = (sampleAdd, res, next) => {
         console.log(`Customer could not be created in database ${error}`);
         return res.status(404).json(error);
       }
-
     });
   };
 
