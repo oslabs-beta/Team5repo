@@ -1,0 +1,49 @@
+syntax = 'proto3';
+
+service CustomersService {
+    rpc CreateCustomer (CustomerReq) returns (CustomerReq){}
+    rpc GetCustomer (CustomerID) returns (CustomerRes) {}
+    rpc DeleteCustomer (CustomerID) returns (Empty) {}
+}
+
+// message Customer {
+//     int32 id = 1;
+//     string name = 2;
+//     string age = 3;
+//     string address = 4;
+// }
+
+message CustomerReq {
+    int32 id = 1;
+    string name = 2;
+    string age = 3;
+    string address = 4;
+    int32 favBookId = 5;
+}
+
+message Book {
+    //title, author, # of pages, publisher
+    string title = 1;
+    string author = 2;
+    int32 numberOfPages = 3;
+    string publisher = 4;
+    int32 id = 5;
+  }
+
+message CustomerRes {
+    int32 id = 1;
+    string name = 2;
+    string age = 3;
+    string address = 4;
+    Book favBook = 5;
+}
+
+message Empty {}
+
+message CustomerList{
+    repeated CustomerRes names = 1;
+}
+
+message CustomerID {
+    int32 id = 1;
+}
