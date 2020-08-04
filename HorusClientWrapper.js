@@ -45,27 +45,27 @@ function checkTime(data) {
       // // ).toFixed(3);
       const avg = math.mean(times).toFixed(3);
       const stDev = math.std(times, "uncorrected").toFixed(3);
+      // console.log('TYPE ***', typeof times[0]);
       console.log("AVG ***", avg);
       console.log("STDEV ***", stDev);
-      // const minT = avg - stDev;
-      // ??? (getting avg instead of maxT for the upper range)
-      // const maxT = avg + stDev;
-      const rng = [avg - stDev, avg + stDev];
-      console.log("RANGE ***", rng);
-      // console.log("RANGE ***", minT, maxT);
+      // change back to 2 Stand. Dev. (95% of norm. distrib. data set)?
+      const minT = (Number(avg) - Number(stDev)).toFixed(3);
+      const maxT = (Number(avg) + Number(stDev)).toFixed(3);
+      // const rng = [avg - stDev, avg + stDev];
+      // console.log("RANGE ***", rng);
+      console.log("RANGE ***", minT, maxT);
       // return [avg, stDev];
       // return [minT, maxT];
       console.log("CURR TIME ***", data.responseTime);
       // compare current response time to the range
       // slack alert if outside the range
-      if (data.responseTime < rng[0] || data.responseTime > rng[1]) {
+      if (data.responseTime < minT || data.responseTime > maxT) {
         slackAlert(data.methodName, data.responseTime, avg, stDev);
       }
       // save trace to horus DB (maybe only acceptable traces to not mess up with normal distribution?)
       // saveTrace(data);
     }
   });
-  // return ...
 }
 
 function slackAlert(methodName, time, avgTime, stDev) {
@@ -97,8 +97,7 @@ function slackAlert(methodName, time, avgTime, stDev) {
     ],
   };
   // move out the link to .env file
-  const slackURL =
-    "https://hooks.slack.com/services/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";
+  const slackURL = 'https://hooks.slack.com/services/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';
   request.post({
     uri: slackURL,
     body: JSON.stringify(obj),
