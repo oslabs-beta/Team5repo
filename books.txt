@@ -280,3 +280,51 @@ Response Time : 278.561
 ID : 4ff0846e-b2d7-4a2a-9714-79ae2d38d389
 Trace : no additional routes
 
+----------------------------------------------------------------------------------------------------
+Method : CreateBook
+Response Time : 305.617
+ID : bea21f2e-88f9-48f4-a5bd-4269a1beb885
+Trace : no additional routes
+
+----------------------------------------------------------------------------------------------------
+Method : CreateBook
+Response Time : 320.434
+ID : cbbe9b11-c8f3-4596-ad3d-b9af93e4b742
+Trace : no additional routes
+
+----------------------------------------------------------------------------------------------------
+Method : CreateBook
+Response Time : 300.260
+ID : bb9ec527-703e-4485-8ff7-3b6bd69803de
+Trace : no additional routes
+
+----------------------------------------------------------------------------------------------------
+Method : CreateBook
+Response Time : 296.907
+ID : 427b900d-2bbe-4688-9213-278210f00dc8
+Trace : no additional routes
+
+----------------------------------------------------------------------------------------------------
+Method : CreateBook
+Response Time : 367.133
+ID : 190b720e-7d77-4a58-b527-dbca6a5cba50
+Trace : no additional routes
+
+----------------------------------------------------------------------------------------------------
+Method : CreateBook
+Response Time : 389.917
+ID : 450a6080-0101-4d1e-8a0d-f90f3dd97bda
+Trace : no additional routes
+
+----------------------------------------------------------------------------------------------------
+Method : CreateBook
+Response Time : 380.754
+ID : b2c7b4ef-bec9-43d0-a4ca-7e1fecccab20
+Trace : no additional routes
+
+----------------------------------------------------------------------------------------------------
+Method : CreateBook
+Response Time : 282.673
+ID : 4b9e058a-8477-47eb-9a16-ad544d41b064
+Trace : no additional routes
+
