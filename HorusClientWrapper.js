@@ -1,9 +1,9 @@
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 const request = require("request");
-const horusModel = require("./HorusDataBaseModel.js");
 const math = require("mathjs");
-// const { checkServerIdentity } = require("tls");
+require("dotenv").config();
+const horusModel = require("./HorusDataBaseModel.js");
 
 function appendToFileWrapper(file, str) {
   fs.appendFile(file, str, (error) => {
@@ -35,37 +35,21 @@ function checkTime(data) {
   // perform DB query pulling out the history of response times for specific method
   query.exec((err, docs) => {
     if (err) console.log("Error retrieving data for specific method", err);
-    // console.log("Docs from DB -> ", docs);
     if (docs.length) {
-      // console.log("# of matching docs ", docs.length);
       const times = docs.map((doc) => doc.responseTime);
-      console.log("TIMES -> ", times);
-      // // const avg = (
-      // //   times.reduce((sum, curr) => sum + curr) / docs.length
-      // // ).toFixed(3);
       const avg = math.mean(times).toFixed(3);
       const stDev = math.std(times, "uncorrected").toFixed(3);
-      // console.log('TYPE ***', typeof times[0]);
-      console.log("AVG ***", avg);
-      console.log("STDEV ***", stDev);
-      // change back to 2 Stand. Dev. (95% of norm. distrib. data set)?
-      const minT = (Number(avg) - Number(stDev)).toFixed(3);
-      const maxT = (Number(avg) + Number(stDev)).toFixed(3);
-      // const rng = [avg - stDev, avg + stDev];
-      // console.log("RANGE ***", rng);
-      console.log("RANGE ***", minT, maxT);
-      // return [avg, stDev];
-      // return [minT, maxT];
-      console.log("CURR TIME ***", data.responseTime);
+      const minT = (Number(avg) - 2 * Number(stDev)).toFixed(3);
+      const maxT = (Number(avg) + 2 * Number(stDev)).toFixed(3);
       // compare current response time to the range
       // slack alert if outside the range
       if (data.responseTime < minT || data.responseTime > maxT) {
         slackAlert(data.methodName, data.responseTime, avg, stDev);
       }
       // save trace to horus DB (maybe only acceptable traces to not mess up with normal distribution?)
-      // saveTrace(data);
     }
   });
+  saveTrace(data);
 }
 
 function slackAlert(methodName, time, avgTime, stDev) {
@@ -77,7 +61,7 @@ function slackAlert(methodName, time, avgTime, stDev) {
         block_id: "section567",
         text: {
           type: "mrkdwn",
-          text: `\n :interrobang: \n '${methodName}' method took ${time}ms which is above the 2 Standard Deviation Treshold   \n :interrobang: \n`,
+          text: `\n :interrobang: \n '${methodName}' method took ${time}ms which is above the Standard Deviation Treshold   \n :interrobang: \n`,
           // text: `\n :interrobang: \n Check your '${service}' container, your time is ${time}ms which is above the 2 Standard Deviation Treshold   \n :interrobang: \n`,
         },
         accessory: {
@@ -96,8 +80,7 @@ function slackAlert(methodName, time, avgTime, stDev) {
       },
     ],
   };
-  // move out the link to .env file
-  const slackURL = 'https://hooks.slack.com/services/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';
+  const slackURL = `${process.env.SLACK_URL}`;
   request.post({
     uri: slackURL,
     body: JSON.stringify(obj),
@@ -113,16 +96,9 @@ function saveTrace(data) {
     methodName: data.methodName,
     responseTime: data.responseTime,
     trace: data.trace,
-    // serviceName: a.serviceName,
-    // targetService: a.targetService,
-    // timestamp: req.timeCompleted,
   };
   console.log("obj to save *** ", obj);
   // can pass in to 'create' multiple objects (nesting case)
-  // horusModel.create(obj, (error, result) => {
-  //   if (error)
-  //     console.log("Error while trying to save the trace doc to Mongo DB");
-  // });
   const traceDoc = new horusModel(obj);
   traceDoc
     .save()
@@ -157,13 +133,9 @@ function makeMethods(
           Number(process.hrtime.bigint() - startTime) / 1000000
         ).toFixed(3);
         metadata[name].id = uuidv4();
-        // CHECKER
         checkTime(metadata[name]);
         // perform DB query returning acceptable limits for response time
-        // const rng = getRange(metadata[name]);
         // save trace to horus DB (maybe only acceptable traces to not mess up with normal distribution?)
-        // saveTrace(metadata[name]);
-        // console.log("logging metadata ", metadata[name]);
         writeToFile(file, metadata[name]);
         callback(error, response);
       }).on("metadata", (metadataFromServer) => {
