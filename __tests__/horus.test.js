@@ -1,15 +1,15 @@
-const chronos = require('../chronos');
+const horusCW = require("../HorusClientWrapper.js");
 
-describe('"chronos.js" tests', () => {
-  describe('checking for all appropriate methods', () => {
-    it("should have the 'use' method", () => {
-      expect(chronos).toHaveProperty('use');
+describe('"Horus Client and Server wrappers tests', () => {
+  describe("checking for all appropriate methods", () => {
+    it("should have the 'metadata' property", () => {
+      expect(horusCW).toHaveProperty("metadata");
     });
-    it("should have the 'propogate' method", () => {
-      expect(chronos).toHaveProperty('propagate');
+    it("'metadata' property should be an object", () => {
+      expect(typeof horusCW.metadata).toBa("Object");
     });
-    it("should have the 'track' method", () => {
-      expect(chronos).toHaveProperty('track');
+    it("should have the 'model' property", () => {
+      expect(horusCW).toHaveProperty("model");
     });
   });
 });
